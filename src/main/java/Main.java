@@ -1,20 +1,24 @@
 import java.util.*;
 
+
 public class Main {
-  public static void main(String[] args) 
+    public static void main(String[] args) 
     {
       // Create a Scanner object to read input from the console
       Scanner input = new Scanner(System.in);
 
-      // Prompt the user to enter a Celsius value
-      System.out.print("Enter a degree in Celsius: ");
-      double celsius = input.nextDouble();
+      // Prompt the user to enter the subtotal and gratuity rate
+      System.out.print("Enter the subtotal and a gratuity rate: ");
+      double subtotal = input.nextDouble(); // Read the subtotal
+      double gratuityRate = input.nextDouble(); // Read the gratuity       rate
+      
+      // Calculate the gratuity
+      double gratuity = subtotal * gratuityRate / 100;
 
-      // Convert the Celsius temperature to Fahrenheit
-      double fahrenheit = (celsius * 9/5) + 32;
+      // Calculate the total
+      double total = subtotal + gratuity;
 
-      // Display the result in the desired format
-      System.out.println(celsius + " Celsius is " + fahrenheit + 
-" Fahrenheit");
+      // Display the gratuity and total
+      System.out.println("The gratuity is $" + gratuity + " and total is $" + total);
     }
-  }
+}
