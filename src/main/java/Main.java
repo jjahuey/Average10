@@ -1,56 +1,48 @@
 import java.util.*;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        // Create a Scanner object for input
         Scanner input = new Scanner(System.in);
 
-        // Prompt the user to enter the month and year
-        System.out.print("Enter the month (1-12): ");
-        int month = input.nextInt();
+        // Prompt user for weight
+        System.out.print("Enter weight in pounds: ");
+        double weightInPounds = input.nextDouble();
 
-        System.out.print("Enter the year: ");
-        int year = input.nextInt();
+        // Prompt user for height in feet and inches
+        System.out.print("Enter feet: ");
+        int feet = input.nextInt();
 
-        // Determine the number of days in the month
-        int daysInMonth;
-        switch (month) {
-            case 1: case 3: case 5: case 7: case 8: case 10: case 12:
-                daysInMonth = 31;
-                break;
-            case 4: case 6: case 9: case 11:
-                daysInMonth = 30;
-                break;
-            case 2:
-                // Check if it's a leap year
-                if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
-                    daysInMonth = 29;
-                } else {
-                    daysInMonth = 28;
-                }
-                break;
-            default:
-                System.out.println("Invalid month entered!");
-                return;
+        System.out.print("Enter inches: ");
+        int inches = input.nextInt();
+
+        // Convert height to inches
+        int totalHeightInInches = (feet * 12) + inches;
+
+        // Conversion factors
+        final double KILOGRAMS_PER_POUND = 0.45359237; // 1 pound = 0.45359237 kilograms
+        final double METERS_PER_INCH = 0.0254;        // 1 inch = 0.0254 meters
+
+        // Convert weight and height to metric
+        double weightInKilograms = weightInPounds * KILOGRAMS_PER_POUND;
+        double heightInMeters = totalHeightInInches * METERS_PER_INCH;
+
+        // Calculate BMI
+        double bmi = weightInKilograms / (heightInMeters * heightInMeters);
+
+        // Display BMI
+        System.out.printf("BMI is %.15f\n", bmi);
+
+        // Interpret BMI
+        if (bmi < 18.5) {
+            System.out.println("Underweight");
+        } else if (bmi < 25) {
+            System.out.println("Normal");
+        } else if (bmi < 30) {
+            System.out.println("Overweight");
+        } else {
+            System.out.println("Obese");
         }
-
-            // Display the result
-            String monthName = "";
-            switch (month) {
-            case 1: monthName = "January"; break;
-            case 2: monthName = "February"; break;
-            case 3: monthName = "March"; break;
-            case 4: monthName = "April"; break;
-            case 5: monthName = "May"; break;
-            case 6: monthName = "June"; break;
-            case 7: monthName = "July"; break;
-            case 8: monthName = "August"; break;
-            case 9: monthName = "September"; break;
-            case 10: monthName = "October"; break;
-            case 11: monthName = "November"; break;
-            case 12: monthName = "December"; break;
-        }
-
-        System.out.println(monthName + " " + year + " had " + daysInMonth + " days.");
     }
 }
+
