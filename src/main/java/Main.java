@@ -1,65 +1,43 @@
 import java.util.*;
 
 public class Main {
+
+    // Method to calculate the average of an array of integers
+    public static int average(int[] array) {
+        int sum = 0;
+        for (int i = 0; i < array.length; i++) {
+            sum += array[i];
+        }
+        return sum / array.length; // Return the integer average
+    }
+
+    // Method to calculate the average of an array of doubles
+    public static double average(double[] array) {
+        double sum = 0.0;
+        for (int i = 0; i < array.length; i++) {
+            sum += array[i];
+        }
+        return sum / array.length; // Return the double average
+    }
+
     public static void main(String[] args) {
-        // Create a Scanner object to read input from the user
         Scanner scanner = new Scanner(System.in);
 
-        // Prompt the user to enter three numbers
-        System.out.print("Enter the first number: ");
-        double num1 = scanner.nextDouble();
+        // Prompt the user to enter 10 double values
+        System.out.println("Enter 10 double values:");
+        double[] values = new double[10];
 
-        System.out.print("Enter the second number: ");
-        double num2 = scanner.nextDouble();
-
-        System.out.print("Enter the third number: ");
-        double num3 = scanner.nextDouble();
-
-        // Call the method to display the numbers in increasing order
-        displaySortedNumbers(num1, num2, num3);
-
-        // Close the scanner to avoid resource leak
-        scanner.close();
-    }
-
-    // Method to display three numbers in increasing order
-    public static void displaySortedNumbers(double num1, double num2, double num3) {
-        // First, find the smallest, middle, and largest numbers using conditional statements
-        double smallest, middle, largest;
-
-        // Compare num1, num2, num3 and assign them to smallest, middle, largest
-        if (num1 <= num2 && num1 <= num3) {
-            smallest = num1;
-            if (num2 <= num3) {
-                middle = num2;
-                largest = num3;
-            } else {
-                middle = num3;
-                largest = num2;
-            }
-        } else if (num2 <= num1 && num2 <= num3) {
-            smallest = num2;
-            if (num1 <= num3) {
-                middle = num1;
-                largest = num3;
-            } else {
-                middle = num3;
-                largest = num1;
-            }
-        } else {
-            smallest = num3;
-            if (num1 <= num2) {
-                middle = num1;
-                largest = num2;
-            } else {
-                middle = num2;
-                largest = num1;
-            }
+        // Read 10 double values from the user
+        for (int i = 0; i < values.length; i++) {
+            values[i] = scanner.nextDouble();
         }
 
-        // Display the numbers in increasing order
-        System.out.println("The numbers in increasing order are: " + smallest + ", " + middle + ", " + largest);
+        // Invoke the average method for the double array
+        double avg = average(values);
+
+        // Display the average value
+        System.out.println("The average of the entered values is: " + avg);
+
+        scanner.close();
     }
 }
-
-
